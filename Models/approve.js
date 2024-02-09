@@ -33,7 +33,7 @@ const approveSchema = new mongoose.Schema({
     },
     status:{
         type:String,
-        enum:['pending','approved','rejected'],
+        enum:['pending','approved','booked','rejected'],
         default:'pending'
     }
 })

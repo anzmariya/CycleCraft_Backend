@@ -30,6 +30,11 @@ const bookedSchema = new mongoose.Schema({
     userId:{
         type:String,
         require:true
+    },
+    status:{
+        type:String,
+        enum:['pending','approved','booked','rejected'],
+        default:'pending'
     }
 })
 

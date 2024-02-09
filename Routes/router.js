@@ -3,6 +3,7 @@ const userController = require('../Controller/userController')
 const bikeApproval = require('../Controller/approveController')
 const bikeController=require('../Controller/bikeController')
 const AdminController=require('../Controller/adminController')
+const booking=require('../Controller/bookingController')
 const jwtMiddleware=require('../Middleware/jwtMiddleware')
 const multer=require('../Middleware/multerMiddleware')
 
@@ -15,9 +16,11 @@ const router=new express.Router()
     router.get('/get-users',userController.getUsersDetails)
     // router.get('/get-userbikes/:userId',jwtMiddleware,bikeController.getUserBikes)
     router.post('/approvedBike/:bikeId',bikeApproval.addtoapproved)
+    router.post('/bookedBike/:bikeId',booking.addtoBooked)
+    router.get('/getbookedbikes',booking.getbookedbikes)
     router.delete('/delete/:bikeId',bikeController.removeBike)
     router.get('/all-approved/bikes',bikeApproval.getapprovedBikes)
-    router.get('/all-approved/bike/:bikeId',bikeApproval.approvedBikebyid)
+    // router.get('/all-approved/bike/:bikeId',bikeApproval.approvedBikebyid)
 
 
     
