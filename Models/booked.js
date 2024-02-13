@@ -27,14 +27,13 @@ const bookedSchema = new mongoose.Schema({
         type:String,
         require:true
     },
-    userId:{
+    bikeAddedBy:{
         type:String,
         require:true
     },
-    status:{
+    userId:{
         type:String,
-        enum:['pending','approved','booked','rejected'],
-        default:'pending'
+        require:true
     }
 })
 
