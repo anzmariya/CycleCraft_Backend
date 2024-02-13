@@ -20,7 +20,7 @@ const router=new express.Router()
     router.delete('/delete/:bikeId',bikeController.removeBike)
     router.get('/all-approved/bikes',bikeApproval.getapprovedBikes)
     router.post('/bookedBike/:bikeId/:userId',jwtMiddleware,bikeController.addtobooked)
-    // router.get('/all-approved/bike/:bikeId',bikeApproval.approvedBikebyid)
+    router.get('/all-approved/bike/:bikeId',bikeApproval.approvedBikebyid)
 
 
     

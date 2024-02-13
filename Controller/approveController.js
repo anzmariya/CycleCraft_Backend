@@ -44,19 +44,19 @@ exports.addtoapproved = async (req, res) => {
     }
 }
 
-// exports.approvedBikebyid = async (req, res) => {
-//   try {
-//       const { bikeId } = req.params; // Extract bikeId from request parameters
+exports.approvedBikebyid = async (req, res) => {
+  try {
+      const { bikeId } = req.params; // Extract bikeId from request parameters
 
-//       // Assuming 'approves' is your Mongoose model
-//       const display = await approves.findById(bikeId);
+      // Assuming 'approves' is your Mongoose model
+      const display = await approves.findById(bikeId);
 
-//       if (display) {
-//           res.status(200).json({ message: 'Bike viewed', display });
-//       } else {
-//           res.status(404).json({ message: 'Bike not found' });
-//       }
-//   } catch (err) {
-//       res.status(500).json({ error: `${err}` });
-//   }
-// };
+      if (display) {
+          res.status(200).json(display);
+      } else {
+          res.status(404).json({ message: 'Bike not found' });
+      }
+  } catch (err) {
+      res.status(500).json({ error: `${err}` });
+  }
+};
