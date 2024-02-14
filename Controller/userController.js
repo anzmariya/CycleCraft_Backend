@@ -67,3 +67,14 @@ exports.getUsersDetails=async(req,res)=>{
         res.status(401).json(`${err}`)
     }
 }
+
+exports.getUserDetailsById=async(req,res)=>{
+    // console.log('inside get user details');
+    // res.status(200).json('user details received')
+    try{
+        const userDetails=await users.findById(userId)
+        res.status(200).json(userDetails)
+    }catch(err){
+        res.status(401).json(`${err}`)
+    }
+}

@@ -108,3 +108,57 @@ exports.addtobooked = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+exports.getBookedBikesByUser = async (req, res) => {
+   
+        
+        const {userId} = req.params
+    try {
+        // Find the booking for the specified user
+            const userBooking = await bookings.find({userId : `${userId}`})
+                // Send the booked bikes for the user as a response
+            res.status(200).json(userBooking);
+            
+        
+    } catch (error) {
+        res.status(500).json({ error: `${error}` });
+    }
+};
+
+exports.getAddedBikesByUser = async (req, res) => {
+   
+    const {userId} = req.params
+try {
+    // Find the booking for the specified user
+        const userBooking = await bookings.find({bikeAddedBy:`${userId}`})
+            // Send the booked bikes for the user as a response
+        res.status(200).json(userBooking);
+        
+    
+} catch (error) {
+    res.status(500).json({ error: `${error}` });
+}
+};
+
+exports.removeBookedBikeFromApproves = async (req, res) => {
+    try {
+        const { bikeId } = req.params;
+
+        const isValidObjectId = mongoose.Types.ObjectId.isValid(bikeId);
+
+        if (!isValidObjectId) {
+            return res.status(400).json({ message: 'Invalid bikeId' });
+        }
+
+        // If the bikeId is valid, you can proceed with the removal
+        const deletedBike = await approves.findByIdAndDelete(bikeId);
+
+        if (deletedBike) {
+            res.status(200).json({ message: 'Bike removed successfully', deletedBike });
+        } else {
+            res.status(404).json({ message: 'Bike not found' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: `${err}` });
+    }
+};
